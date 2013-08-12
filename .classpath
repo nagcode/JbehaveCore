@@ -6,9 +6,10 @@
 	<classpathentry kind="lib" path="lib/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/freemarker.jar"/>
-	<classpathentry kind="lib" path="lib/jbehave-core-3.5.4.jar"/>
 	<classpathentry kind="lib" path="lib/org.apache.commons.io.jar"/>
 	<classpathentry kind="lib" path="lib/paranamer-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/plexus-utils-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/jbehave-junit-runner-1.0.2-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/jbehave-core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

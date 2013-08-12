@@ -8,43 +8,41 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
+import org.jbehave.core.steps.Steps;
 
-public class MathSteps {
+public class MathSteps extends Steps {
 	List<List<String>> numbers = new ArrayList<List<String>>();
-	List<Integer> actualResults = new ArrayList<Integer>();
-	List<String> expectedResults = new ArrayList<String>();
+	List<Double> actualResults = new ArrayList<Double>();
+	List<Double> expectedResults = new ArrayList<Double>();
 	
 	@Given("this table of numbers $numbersTable")
 	public void setNumbersTable(ExamplesTable numbersTable) {
 		for (Map<String, String> row : numbersTable.getRows()) {
 			numbers.add( new ArrayList<String> (row.values()));
-		}
-		System.out.println("Given");
+		}		
 	}
 
-	@When("I add numbers in each row")
-	public void addNumbersInRow() {
+	@When("the math operation 'Num1' to the power of 'Num2' is performed on each row")
+	public void performMathPow() {
 		for (int i = 0; i < numbers.size(); i++) {
 			List<String> numbersInRow = numbers.get(i);
-			int result = 0;
-			for (int j=0; j < numbersInRow.size() ; j++) {
-				result = result + Integer.parseInt(numbersInRow.get(j));
-			}
+			double result = 0;
+			double x = Double.parseDouble(numbersInRow.get(0));
+			double y = Double.parseDouble(numbersInRow.get(1));
+			result = Math.pow(x, y);
 			actualResults.add(result);
 		};
-		System.out.println("When");
 	}
 
 	@Then("the results should match this table $resultsTable")
-	public void assertElementCount(ExamplesTable expectedResultsTable) {
+	public void verifyResults(ExamplesTable expectedResultsTable) {
 		int i=0;
 		for (Map<String, String> row : expectedResultsTable.getRows()) {
-			int expectedNumber = Integer.parseInt(row.get("Result"));
-			int actualNumber = actualResults.get(i);
+			double expectedNumber = Double.parseDouble(row.get("Result"));
+			double actualNumber = actualResults.get(i);
 			Assert.assertEquals(expectedNumber, actualNumber);
 			i++;
 		}
-		System.out.println("Then");
 	}
 	
 }
